@@ -15,10 +15,10 @@ Let's not waste anytime, let's just see what it can do on top of that old clunki
 </p><br>
 
 
-<quote>
+<blockquote>
 Good advice is sometimes confusing, but example is always clear.
 <p>Guy Doud [Teacher of the Year]</>
-</quote>
+</blockquote>
 <br>
 <code>
 <pre>
