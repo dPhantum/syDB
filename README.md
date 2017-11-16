@@ -12,13 +12,16 @@ due today. But be of good cheer syDB is here!</p>
 
 <p>
 Let's not waste anytime, let's just see what it can do on top of that old clunkity version of Sybase.
-</p>
+</p><br>
+
+
 <quote>
 Good advice is sometimes confusing, but example is always clear.
 <p>Guy Doud [Teacher of the Year]</>
 </quote>
-
+<br>
 <code>
+<pre>
 // verify that the AccountID exists
 	if (!(new syDB(array(
 			object => 'Users',
@@ -27,6 +30,7 @@ Good advice is sometimes confusing, but example is always clear.
 		header("location: ../?send=them&to=prison");
 		exit();
 	}
+</pre>
 </code>
 
 <p>
