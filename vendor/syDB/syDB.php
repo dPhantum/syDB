@@ -2574,11 +2574,11 @@ class syDB extends morphClass {
 			$this->_rowPosition = Paginator::getRowStartRange()-1;// zero offset
 			if (empty($params["rows"])) // use default if no override
 				$this->_limit = Paginator::getRowsPerPage();
-				else // if override always set it over the derived paginator value
-					$this->_limit = intval($params["rows"]);
-					if (isset($params[paginateStyle]) && $params[paginateStyle]==indeterminate){
-						Paginator::initSet(array(paginateStyle => indeterminate));
-					}
+			else // if override always set it over the derived paginator value
+				$this->_limit = intval($params["rows"]);
+			if (isset($params[paginateStyle]) && $params[paginateStyle]==indeterminate){
+				Paginator::initSet(array(paginateStyle => indeterminate));
+			}
 		}
 		
 		// ---------------------------------------
