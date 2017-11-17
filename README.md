@@ -380,8 +380,8 @@ Well, we already have seen a taste of the read operations. Now let's do data edi
 <p>Life made very simple for adding new record.</p>
 <pre><code>
 $user = new syDB(array(
-				'object' => 'users'
-		));
+	'object' => 'users'
+));
 		
 $user->username = "johndoe";
 $user->email = "johanan@doey.com";
@@ -409,11 +409,11 @@ call the Save() function.
 <pre><code>
 
 $user = new syDB(array(
-		object => 'users'
-		conditions => array(
-			'id' => 123354
-		)
-	));
+	object => 'users'
+	conditions => array(
+		'id' => 123354
+	)
+));
 
 if ($user->hasResult()){
 	// Do and update here
@@ -486,4 +486,3 @@ We have only began to scratch the surface of function documented here... more co
 
 <p>
 </p>
-
