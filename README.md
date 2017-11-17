@@ -510,16 +510,17 @@ $rowsAffected = syDB::Delete(array(
 </p>
 
 <pre><code>
-	$users = new syDB(array(
-		object =>'users'
-		conditions => array(
-			'status' => 'active'
-		),
-		pagination => true; // now the pagination bar is created and ready for you to use!
-	));
-	
-	..... some where else in a template or view far far away in a wanna be MVC world you simply call one function ...
-	Paginator::getPager(); // this will generate the code for a bootstrap rendered pagination bar
+
+$users = new syDB(array(
+	object =>'users'
+	conditions => array(
+		'status' => 'active'
+	),
+	pagination => true; // now the pagination bar is created and ready for you to use!
+));
+
+..... some where else in a template or view far far away in a wanna be MVC world you simply call one function ...
+Paginator::getPager(); // this will generate the code for a bootstrap rendered pagination bar
 	
 </code></pre>
 
@@ -532,7 +533,7 @@ $rowsAffected = syDB::Delete(array(
 </p>
 
 <p>
-The pagination values are controlled in the environment.php file by the following values:
+	The pagination values are controlled in the environment.php file by the following values:
 </p>
 <pre><code>
 CONST Pager_RowsPerPage = 10;	// Controls how many records are displayed on each page
