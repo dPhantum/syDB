@@ -32,8 +32,8 @@ Guy Doud [Teacher of the Year]<br>
 	You may optionally define multiple DSN entries for you application, and communicate/pass data 
 	between the two. The default DSN definition is the environment.php file and will be used if not connection
 	parameter is assigned when instantiating the ORM. 
-	</p>
-	<p>
+</p>
+<p>
 	For example, when instantiating the ORM with the following <code>connection => "READ-ONLY"</code> it will
 	use the DSN definition <code>READ_ONLY_DSN</code>in the environment file. This can be because you are using
 	a replicated database for load balancing or extra security tha would prohibit any accidental updating of 
