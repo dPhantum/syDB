@@ -116,7 +116,7 @@ $var = $dog->breed;
 <p>
 	In this example we are going show how to chain results. We will make a query if a user records exists,
 	use the method <code>hasResult()</code> to determine if it is not an empty data set, and take some action,
-	and all that within a single "IF" statement, yes indeed, very sweet!
+	and all that within a single "IF" statement, yes indeed, very sweet! 
 </p>
 <pre><code>
 // verify that the user ID exists
@@ -159,8 +159,8 @@ while ($RemarkType->Fetch()) {
 <h2>Foreach Loop Example</h2>
 <code><pre>
 $Fruits = new ORM(array(
-   		object => 'trees',
-   		where => array('tree_type'=>'fruit bearing')
+	object => 'trees',
+	where => array('tree_type'=>'fruit bearing')
 ));
 
 foreach ($Fruits as $indx => $fruit ) {
@@ -183,33 +183,34 @@ $select = "SELECT ...(somthing really advanced here, like case statements etc)..
 // -------------------------------------------------------
 $params = array(
 	connection => "READ-ONLY", // Use a custom DSN entries in the environment.php file 
-	object => 'users u', // table drive with alias 'u' given
-	select => $select,
-	leftJoin => array(
-		'accounts_details a' 	=> 	array('u.account_id' => 'a.id'),
-		'roles r' 		=>  array('u.role_id' => 'r.id')
+	object => 				'users u', // table drive with alias 'u' given
+	select => 				$select,
+	leftJoin => 			array(
+		'accounts_details a' => 	
+							array('u.account_id' => 'a.id'),
+		'roles r' =>		array('u.role_id' => 'r.id')
 	),
 	rightJoin = array(
-		'photos p' 		=> 	array('u.photo_id' => 'p.id'),
-		'comments c' => 	array('u.id' => 'c.user_id')
+		'photos p' =>		array('u.photo_id' => 'p.id'),
+		'comments c' =>		array('u.id' => 'c.user_id')
 	),
 	outerJoin = array(
-		'orders o' => 	array('u.id' => 'o.user_id'),
-		'clearances cl' => 	array('u.id' => 'cl.user_id')
+		'orders o' =>		array('u.id' => 'o.user_id'),
+		'clearances cl' =>	array('u.id' => 'cl.user_id')
 	),
 	conditions => array(
 		'user_id => '12345',
 		'SubString(Zip, 1, 5)' => $Zip, // perform function on the column for comparison
-		'Inactive' => array('!=' => 1)) // specify operator override
+		'Inactive' =>		array('!=' => 1)) // specify operator override
 	),
 	orderBy => array(
-		"create_date"=> "DESC", 
-		"create_time" => "DESC"
+		"create_date" =>	"DESC", 
+		"create_time" =>	"DESC"
 	),
-	schema => 'hr', // attach the tables to the following schema
-	database => 'corporate_db', // use a different database than default
-	readOnly => true, // do not allow this object (users) to be update/mutated
-	paginate => true  // build the pagination bar with links
+	schema => 				'hr', // attach the tables to the following schema
+	database => 			'corporate_db', // use a different database than default
+	readOnly => 			true, // do not allow this object (users) to be update/mutated
+	paginate => 			true  // build the pagination bar with links
 );
                
 // -------------------------------------------------- 
@@ -308,7 +309,7 @@ $queryParams[paginate] = true;
   
 $myData = new ORM($queryParams);
 
-foreach ($hawbs as $i => $row){
+foreach ($myData as $i => $row){
 	... doe something great with this data ...
 } 
 
