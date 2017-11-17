@@ -628,7 +628,7 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 </div>
 <style>
 <!--
-.md-readme code {
+.md-readme pre, .md-readme code  {
 	background-color: #000 !important;
 	color: green !important;
 }
