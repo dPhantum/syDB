@@ -1,5 +1,4 @@
 
-<div class="alert alert-danger" role="alert">Documentation is currently work in progress</div>
 
 <h1>syDB ORM for Sybase SQLAnywhere version 12 and below</h1>
 
