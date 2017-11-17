@@ -604,8 +604,13 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 
 <h3>More Documentation coming</h3>
 <p>
-	We have only began to scratch the surface of function documented here... more coming...
+	We have only began to scratch the surface of functionality documented here...<br>
+	There is also query caching, sql generation (create SQL but not execute), implicit caching for paginator,
+	and many other groovy things!<br> 
+	more coming...
 </p>
 
 <p>
 </p>
+
+
