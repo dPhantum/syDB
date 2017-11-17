@@ -1,6 +1,3 @@
-
-<body style="margin-left: 50px" class="block-center">
-
 <div class="alert alert-danger" role="alert">Documentation is currently is being written</div>
 
 <h1>syDB ORM for Sybase SQLAnywhere version 12 and below</h1>
@@ -423,8 +420,38 @@ else {
 </p>
 
 
+<h3>Pagination</h3>
+<p>
+	The syDB ORM communicates with the helper class Paginator, and assigns all the database related
+	pagination data. This allow you the freedom of not having to be concerned about page movement
+	and pagination selection.
+	Those of you who have been using these old versions of sybase know what a pain it is to work
+	in a moder way with pagination for the web. Well, we got your back covered with this one. All you
+	need to do to create the pagination bar is one line of code: 
+</p>
+
+<pre><code>
+	$users = new syDB(array(
+		object =>'users'
+		conditions => array(
+			'status' => 'active'
+		),
+		pagination => true; // now the pagination bar is created and ready for you to use!
+	));
+	
+	..... some where else in a template or view far far away in a wanna be MVC world you simply call one function ...
+	Paginator::getPager(); // this will generate the code for a bootstrap rendered pagination bar
+	
+</code></pre>
+
+<p>
+</p>
+
+
+
 <h3>More Documentation coming</h3>
 <p>
+We have only began to scratch the surface of function documented here... more coming...
 </p>
 
 <pre><code>
@@ -433,6 +460,3 @@ else {
 <p>
 </p>
 
-
-</body>
-</html>
