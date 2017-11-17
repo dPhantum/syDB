@@ -1,6 +1,6 @@
 <style>
 <!--
-.md-readme pre {
+.md-readme pre > code {
 	background-color: #000 !important;
 	color: green !important;
 }
