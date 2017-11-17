@@ -19,8 +19,8 @@ Let's not waste anytime, let's just see what it can do on top of those old clunk
 
 
 <blockquote>
-Good advice is sometimes confusing, but example is always clear.<br>
-Guy Doud [Teacher of the Year]
+Good advice is sometimes confusing, but example is always clear.
+<p>Guy Doud [Teacher of the Year]</>
 </blockquote>
 <br>
 
@@ -32,8 +32,8 @@ Guy Doud [Teacher of the Year]
 	You may optionally define multiple DSN entries for you application, and communicate/pass data 
 	between the two. The default DSN definition is the environment.php file and will be used if not connection
 	parameter is assigned when instantiating the ORM. 
-</p>
-<p>
+	</p>
+	<p>
 	For example, when instantiating the ORM with the following <code>connection => "READ-ONLY"</code> it will
 	use the DSN definition <code>READ_ONLY_DSN</code>in the environment file. This can be because you are using
 	a replicated database for load balancing or extra security tha would prohibit any accidental updating of 
@@ -42,8 +42,7 @@ Guy Doud [Teacher of the Year]
 
 <h2>Simplest Usage</h2>
 <p>Here is the simplest usage that you could possible have with syDB ORM, although not recommeded,
-because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:
-</p>
+because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:</p>
 
 
 <pre><code>
@@ -59,7 +58,7 @@ echo "The breed ".
 	
 </code></pre>
 <p>
-	Very easy! Essentially one line of code. By default the ORM will return one record, but if within and iteration it will 
+	Very easy! Essentially one line of code. By default the ORM will return one record, but if within an iteration it will 
 	continue to fetch, although a prefetch number can be specified. But in this example, were 
 	using the default of a single record fetched. 
 </p>
@@ -337,11 +336,13 @@ foreach ($myData as $i => $row){
 
 <pre>
 <code>
-	$user = new syDB(array(object => 'users'));
-	ShowSomeClass::processIt($user); // by reference parameter
-	
-	.... meanwhile back at the ShowSomeClass class
-	static public function ShowSomeClass(&$user){
+$user = new syDB(array(object => 'users'));
+ShowSomeClass::processIt($user); // by reference parameter
+
+.... meanwhile back at the ShowSomeClass class
+class ShowSomeClass implement SomethingWonderful {
+	...
+	static public function processIt(&$user){
 		if (checkifsomethingstinks($user))
 			$user->xmetaStatus = 'foul breath';
 		else
@@ -349,17 +350,18 @@ foreach ($myData as $i => $row){
 			
 		return;
 	}
-	... returning back to the main body ...
 	
-	if ($user->xmetaStatus!='Roses'){
-		throw Exception('this guy stinks');
-	}
-	else {
-		// You can pass some additional information that can be used for
-		// further processing but not actually tied to the user record.
-		$user->xmetaMessage ="Display this about the user, 'he smells like roses'";
-		Security::createUser($user); // pass by reference to create the user
-	}
+... returning back to the main body ...
+
+if ($user->xmetaStatus!='Roses'){
+	throw Exception('this guy stinks');
+}
+else {
+	// You can pass some additional information that can be used for
+	// further processing but not actually tied to the user record.
+	$user->xmetaMessage ="Display this about the user, 'he smells like roses'";
+	Security::createUser($user); // pass by reference to create the user
+}
 	
 </code></pre>
 
