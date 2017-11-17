@@ -1,8 +1,10 @@
 <style>
+<!--
 .md-readme pre {
 	background-color: #000 !important;
 	color: green !important;
 }
+-->
 </style>
 
 <div class="md-readme">
