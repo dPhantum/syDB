@@ -144,14 +144,14 @@ short lists. syDB can be used and an iterator to accomplish this.
 <code><pre>
 
 $Fruits = new ORM(array(
-	object => 'trees',
-	where => array(
-		'tree_type'=>'fruit bearing')
-	));
+object => 'trees',
+where => array(
+	'tree_type'=>'fruit bearing')
+));
 
-	while ($RemarkType->Fetch()) {
-		$Fruit[] = $RemarkType->FruitName;
-	}
+while ($RemarkType->Fetch()) {
+	$Fruit[] = $RemarkType->FruitName;
+}
 
 </pre>
 </code>
@@ -485,5 +485,4 @@ We have only began to scratch the surface of function documented here... more co
 
 <p>
 </p>
-
 
