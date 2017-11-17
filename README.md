@@ -634,7 +634,7 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 }
 .md-readme code  {
 	background-color: #000 !important;
-	color: #6eff6e !important;
+	color: #ffc800 !important;
 }
 -->
 </style>
