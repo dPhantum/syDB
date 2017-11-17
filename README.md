@@ -4,9 +4,8 @@
 
 <p>For those poor weary souls who have to develop with the ancient version of SQLAnywhere version 12 and below, 
 there is hope for you! This code was developed out of the need that there were no modern ORM's out there that supported 
-that old dinosaur version of SQLAnywhere, and to overcome the serious technical flaw that the database does version 
-did not support, namely, scrolling cursors. That version of the database does support the LIMIT clause as modern databases 
-due today. But be of good cheer syDB is here!</p>
+that old dinosaur version of SQLAnywhere, and to overcome the serious technical flaws that the database version 
+did not support, namely, scrolling cursors. That version of the database does support the <code>LIMIT</code> clause as modern databases due today. But be of good cheer syDB is here!</p>
 
 <h2>Modern Things in and Old Thing</h2>
 <p>So, to relieve the pain of having to use version 12 and below of Sybase in PHP, syDB was born.
