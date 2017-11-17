@@ -340,7 +340,7 @@ $user = new syDB(array(object => 'users'));
 ShowSomeClass::processIt($user); // by reference parameter
 
 .... meanwhile back at the ShowSomeClass class
-class ShowSomeClass implement SomethingWonderful {
+class ShowSomeClass extends SomethingWonderful {
 	...
 	static public function processIt(&$user){
 		if (checkifsomethingstinks($user))
