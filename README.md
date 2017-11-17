@@ -2,7 +2,7 @@
 <div class="md-readme">
 
 
-<h1>syDB ORM for Sybase SQLAnywhere</h1>
+<h1>syDB ORM for Sybase SQLAnywhere in PHP</h1>
 
 <p>
 	For those poor weary souls who have to develop with the ancient version of SQLAnywhere version 12 and below, 
