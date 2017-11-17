@@ -1,4 +1,5 @@
-<div class="alert alert-danger" role="alert">Documentation is currently is being written</div>
+
+<div class="alert alert-danger" role="alert">Documentation is currently work in progress</div>
 
 <h1>syDB ORM for Sybase SQLAnywhere version 12 and below</h1>
 
@@ -143,10 +144,10 @@ short lists. syDB can be used and an iterator to accomplish this.
 <code><pre>
 
 $Fruits = new ORM(array(
-   		object => 'trees',
-   		where => array(
-   			'tree_type'=>'fruit bearing')
-		));
+	object => 'trees',
+	where => array(
+		'tree_type'=>'fruit bearing')
+	));
 
 	while ($RemarkType->Fetch()) {
 		$Fruit[] = $RemarkType->FruitName;
@@ -176,53 +177,54 @@ foreach ($Fruits as $indx => $fruit ) {
 </p>
 
 <pre><code>
-		$select = "SELECT ...(somthing really advanced here, like case statements etc)... ";
-		// -------------------------------------------------------
-        // Build the criteria parameters for the object mapping 
-		// -------------------------------------------------------
-		$params = array(
-				connection => "READ-ONLY", // Use a custom DSN entries in the environment.php file 
-         		object => 'users u', // table drive with alias 'u' given
-         		select => $select,
-         		leftJoin => array(
-         				'accounts_details a' 	=> 	array('u.account_id' => 'a.id'),
-         				'roles r' 		=>  array('u.role_id' => 'r.id')
-         				),
-         		rightJoin = array(
-         				'photos p' 		=> 	array('u.photo_id' => 'p.id'),
-         				'comments c' => 	array('u.id' => 'c.user_id')
-         				),
-         		outerJoin = array(
-         				'orders o' => 	array('u.id' => 'o.user_id'),
-         				'clearances cl' => 	array('u.id' => 'cl.user_id')
-         		),
-         		conditions => array(
-         			'user_id => '12345',
-         			'SubString(Zip, 1, 5)' => $Zip, // perform function on the column for comparison
-					'Inactive' => array('!=' => 1)) // specify operator override
-         		),
-         		orderBy => array(
-							"create_date"=> "DESC", 
-							"create_time" => "DESC")
-         		schema => 'hr', // attach the tables to the following schema
-         		database => 'corporate_db', // use a different database than default
-         		readOnly => true, // do not allow this object (users) to be update/mutated
-         		paginate => true  // build the pagination bar with links
-		);
-                 
-        // -------------------------------------------------- 
-		// Get the result set for the required parameters
-        // -------------------------------------------------- 
-		$userResult = new syDB($params);
-		
-		if($userResult->hasResult()) {
-	         while($userResult->Fetch()){
-	         	... do something great with each row here ...
-	         }
-		}
-		else {
-			... set some default here if no results found ...
-		}
+$select = "SELECT ...(somthing really advanced here, like case statements etc)... ";
+// -------------------------------------------------------
+// Build the criteria parameters for the object mapping 
+// -------------------------------------------------------
+$params = array(
+	connection => "READ-ONLY", // Use a custom DSN entries in the environment.php file 
+	object => 'users u', // table drive with alias 'u' given
+	select => $select,
+	leftJoin => array(
+		'accounts_details a' 	=> 	array('u.account_id' => 'a.id'),
+		'roles r' 		=>  array('u.role_id' => 'r.id')
+	),
+	rightJoin = array(
+		'photos p' 		=> 	array('u.photo_id' => 'p.id'),
+		'comments c' => 	array('u.id' => 'c.user_id')
+	),
+	outerJoin = array(
+		'orders o' => 	array('u.id' => 'o.user_id'),
+		'clearances cl' => 	array('u.id' => 'cl.user_id')
+	),
+	conditions => array(
+		'user_id => '12345',
+		'SubString(Zip, 1, 5)' => $Zip, // perform function on the column for comparison
+		'Inactive' => array('!=' => 1)) // specify operator override
+	),
+	orderBy => array(
+		"create_date"=> "DESC", 
+		"create_time" => "DESC"
+	),
+	schema => 'hr', // attach the tables to the following schema
+	database => 'corporate_db', // use a different database than default
+	readOnly => true, // do not allow this object (users) to be update/mutated
+	paginate => true  // build the pagination bar with links
+);
+               
+// -------------------------------------------------- 
+// Get the result set for the required parameters
+// -------------------------------------------------- 
+$userResult = new syDB($params);
+
+if($userResult->hasResult()) {
+	while($userResult->Fetch()){
+		... do something great with each row here ...
+	}
+}
+else {
+	... set some default here if no results found ...
+}
 </code>
 </pre>
 
@@ -244,31 +246,38 @@ foreach ($Fruits as $indx => $fruit ) {
 <pre>
 <code>
 
-	// pass your own raw SQL for the where condition or an array for auto binding
-	$user = new syDB(array(
-		object => 'users'
-		where => "username not like '%fathead%' category != upper('WEIRDO')" // raw sql for where 
-	));
-	
-	// 
-	$query ="
-				SELECT here.this, and.there, here.that
-					FROM here, and, there,
-						(SELECT more, colums FROM overthere WHERE good='times are here' AND status= ? ) A
-				WHERE
-					A.more = here.this
-					here.id = ?
-					.... and so forth
-					
-			";
-	$stuff = new syDB(array(
-		query => $query,
-		bindVariables = array('Awesome','Wonderful')
-	));
+// pass your own raw SQL for the where condition or an array for auto binding
+$user = new syDB(array(
+	object => 'users'
+	where => "username not like '%fathead%' category != upper('WEIRDO')" // raw sql for where 
+));
+
+// 
+$query ="
+	SELECT here.this, and.there, here.that
+	FROM here, and, there,
+		(SELECT more, colums FROM overthere WHERE good='times are here' AND status= ? ) A
+	WHERE
+		A.more = here.this
+		here.id = ?
+		.... and so forth";
+		
+$stuff = new syDB(array(
+	query => $query,
+	rows => 100, // Prefetch 100 rows in the the buffer
+	bindVariables = array('Awesome','Wonderful')
+));
+
+// Forget the iteration, just give me all 100 records prefetched into an array
+// and now passit to your view/template for a display iteration
+$ArrayOfRecords = $stuff->getData();
+
 </code></pre>
 
 <p>
-	You have ultimate control, nice!
+	You have ultimate control, with the luxury of secure bind variables, nice!
+	Here we demonstrate that you can set a Prefetch amount by the parameter <code>rows</code>
+	for each iteration, the default is one. Save iteration time by prepopulating your buffer.
 </p>
 
 <h2>Multiple Statement Processing</h2>
@@ -307,6 +316,11 @@ foreach ($hawbs as $i => $row){
 
 <p>
 	That is the power and flexlibility of the syDB ORM, but yet there is much more.
+	You may execute any number of <code>raw</code> queries prior to the <code>query</code>
+	parameter, the only reststriction is that they will not return any records, only
+	one query is permitted to fetch, and that is the <code>query</code> pararmeter.
+	Unlike other ORM's this one doesn't restict you purely to direct mapping to 
+	database objects but also is flexible to serve as a transient database API.
 </p>
 
 <h2>Messaging or Metadata Assignment</h2>
@@ -445,8 +459,20 @@ else {
 </code></pre>
 
 <p>
+	When you set the <code>pagination</code> parameter, do not user the <code>rows</code> parameter
+	they are mutually exclusive. You control the number of displayed row by setting the 
+	<code>Pager_RowsPerPage</code> parameter described below. The ORM works synergistically 
+	with the Paginator Class so that you do not have to keep track of where you are in the 
+	page selections. The Paginator class uses a caching mechanism to keep the status persistent. 
 </p>
 
+<p>
+The pagination values are controlled in the environment.php file by the following values:
+</p>
+<pre><code>
+CONST Pager_RowsPerPage = 10;	// Controls how many records are displayed on each page
+CONST Pager_PagesPerBar = 6;	// Controls displayed page ranges in the paginator bar
+</code></pre>
 
 
 <h3>More Documentation coming</h3>
@@ -459,4 +485,5 @@ We have only began to scratch the surface of function documented here... more co
 
 <p>
 </p>
+
 
