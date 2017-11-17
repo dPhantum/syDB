@@ -115,8 +115,8 @@ $var = $dog->breed;
 <h2>Chaining Results</h2>
 <p>
 	In this example we are going show how to chain results. We will make a query if a user records exists,
-	use the method <code>hasResult() to determine if it is not an empty data set, and take some action,
-	and all that within a single "IF" statement, yes indeed, very sweet!</code> 
+	use the method <code>hasResult()</code> to determine if it is not an empty data set, and take some action,
+	and all that within a single "IF" statement, yes indeed, very sweet!
 </p>
 <pre><code>
 // verify that the user ID exists
