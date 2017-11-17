@@ -32,8 +32,8 @@ Guy Doud [Teacher of the Year]
 	You may optionally define multiple DSN entries for you application, and communicate/pass data 
 	between the two. The default DSN definition is the environment.php file and will be used if not connection
 	parameter is assigned when instantiating the ORM. 
-	</p>
-	<p>
+</p>
+<p>
 	For example, when instantiating the ORM with the following <code>connection => "READ-ONLY"</code> it will
 	use the DSN definition <code>READ_ONLY_DSN</code>in the environment file. This can be because you are using
 	a replicated database for load balancing or extra security tha would prohibit any accidental updating of 
@@ -42,7 +42,8 @@ Guy Doud [Teacher of the Year]
 
 <h2>Simplest Usage</h2>
 <p>Here is the simplest usage that you could possible have with syDB ORM, although not recommeded,
-because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:</p>
+because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:
+</p>
 
 
 <pre><code>
