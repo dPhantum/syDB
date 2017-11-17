@@ -37,7 +37,7 @@ Good advice is sometimes confusing, but example is always clear.<br>
 <p>
 	For example, when instantiating the ORM with the following <code>connection => "READ-ONLY"</code> it will
 	use the DSN definition <code>READ_ONLY_DSN</code>in the environment file. This can be because you are using
-	a replicated database for load balancing or extra security tha would prohibit any accidental updating of 
+	a replicated database for load balancing or extra security that would prohibit any accidental updating of 
 	data. 
 </p>
 
@@ -395,16 +395,19 @@ else {
 
 <h2>CRUD Operations</h2>
 <p>
-Well, we already have seen a taste of the read operations. Now let's do data editing and creation.
-All the functionality for querying apply to the update and delete operations. These requests
-are internally optimized by the ORM to perform the update operations implicitly by the
-primary key, so you need only change the data definitions and let the ORM update by the key 
-for better performance. How nice is that! As a developer you can just focus on the business
-operation and the ORM take care of the database optimization.
+	Well, we already have seen a taste of the read operations. Now let's do data editing and creation.
+	All the functionality for querying apply to the update and delete operations. These requests
+	are internally optimized by the ORM to perform the update operations implicitly by the
+	primary key, so you need only change the data definitions and let the ORM update by the key 
+	for better performance. How nice is that! As a developer you can just focus on the business
+	operation and the ORM take care of the database optimization.
 </p>
 
 <h3>Creation/Inserts Operations</h3>
-<p>Life made very simple for adding new record.</p>
+<p>
+	Life made very simple for adding new record.
+</p>
+
 <pre><code>
 $user = new syDB(array(
 	'object' => 'users'
@@ -422,16 +425,16 @@ $UserId = $user->id;
 </code></pre>
 
 <p>
-The ORM will auto assign the auto-incremented or primary key, when the record is created.
-You will no longer have to make a subsequent call to get the key value, it is given to you on a stick! 
+	The ORM will auto assign the auto-incremented or primary key, when the record is created.
+	You will no longer have to make a subsequent call to get the key value, it is given to you on a stick! 
 </p>
 
 
 
 <h3>Update Operations</h3>
 <p>
-To update a record, you can fetch as normal and then after making your alterations simply 
-call the Save() function. 
+	To update a record, you can fetch as normal and then after making your alterations simply 
+	call the Save() function. 
 </p>
 
 <pre><code>
@@ -567,6 +570,7 @@ conditions => array( 'TableA.ColumnA' => 'TableB.ColumnB')
 <p>
 	And for comparisons other than <code>=</code> operator then specify the operator with the value/column
 </p>
+
 <pre><code>
 conditions => array( 'TableA.ColumnA' => array('>=' => 'TableB.ColumnB'))
 </code></pre>
@@ -575,6 +579,8 @@ conditions => array( 'TableA.ColumnA' => array('>=' => 'TableB.ColumnB'))
 <p>
 	For <code>SELF JOINS</code> and simple column comparison, the same also applies.<br>
 	For example, in raw SQL the following <code>WHERE</code> condition: 
+</p>
+
 <pre><code>
 WHERE Column1 = Column1
 </code></pre>
@@ -582,6 +588,7 @@ WHERE Column1 = Column1
 <p>
 	Should be done as follows with the ORM:
 </p>
+
 <pre><code>
 conditions' => array('TableName.Column1' => 'TableName.Column2')
 </code></pre>
@@ -609,8 +616,4 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 	and many other groovy things!<br> 
 	more coming...
 </p>
-
-<p>
-</p>
-
 
