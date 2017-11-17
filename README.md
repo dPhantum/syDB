@@ -14,7 +14,7 @@ due today. But be of good cheer syDB is here!</p>
 </p>
 
 <p>
-Let's not waste anytime, let's just see what it can do on top of those old clunkity versions of Sybase.
+Let's not waste anytime, let's just see what it can do on top of those old clunky versions of Sybase.
 </p><br>
 
 
@@ -24,11 +24,11 @@ Good advice is sometimes confusing, but example is always clear.<br>
 </blockquote>
 <br>
 
-<h2>Prerequisits</h2>
+<h2>Prerequisites</h2>
 <p>
 	This ORM relies upon the PHP odbc library. You must define DSN entries in your system that correspond to the 
-	DSN name enteries in the <code>environment.php</code> file. This file contains all your connect definitions 
-	and other critical defintions.
+	DSN name entries in the <code>environment.php</code> file. This file contains all your connect definitions 
+	and other critical definitions.
 	You may optionally define multiple DSN entries for you application, and communicate/pass data 
 	between the two. The default DSN definition is the environment.php file and will be used if not connection
 	parameter is assigned when instantiating the ORM. 
@@ -41,7 +41,7 @@ Good advice is sometimes confusing, but example is always clear.<br>
 </p>
 
 <h2>Simplest Usage</h2>
-<p>Here is the simplest usage that you could possible have with syDB ORM, although not recommeded,
+<p>Here is the simplest usage that you could possible have with syDB ORM, although not recommended,
 because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:</p>
 
 
@@ -59,14 +59,14 @@ echo "The breed ".
 </code></pre>
 <p>
 	Very easy! Essentially one line of code. By default the ORM will return one record, but if within an iteration it will 
-	continue to fetch, although a prefetch number can be specified. But in this example, were 
+	continue to fetch, although a pre-fetch number can be specified. But in this example, were 
 	using the default of a single record fetched. 
 </p>
 
 <h3>Security First - Bind variables</h3>
 <p>
 For security reasons, bind variables should be used. And syDB make it easy, let's take the previous example and 
-use bind variables instead. Bind variables can be applied in two differenct ways, in "raw SQL", or implicitly 
+use bind variables instead. Bind variables can be applied in two different ways, in "raw SQL", or implicitly 
 when using the OOP pattern of requests.
 </p>
 
@@ -107,7 +107,7 @@ $var = $dog->breed;
 <p>
 	Also implicitly handled for you is the bind operations for all conditional assignments used in the
 	"where" clause in the above example. The use of the term "where" and "conditions" can be used 
-	interchangably.
+	interchangeably.
 </p>
 
 
@@ -129,7 +129,7 @@ if (!(new syDB(array(
 }
 </code></pre>
 <p>
-The hasResult() will return a boolean true if data was found or false if its empty. 
+The <code>hasResult()</code> will return a boolean true if data was found or false if its empty. 
 </p>
 
 
@@ -175,7 +175,7 @@ foreach ($Fruits as $indx => $fruit ) {
 </p>
 
 <pre><code>
-$select = "SELECT ...(somthing really advanced here, like case statements etc)... ";
+$select = "SELECT ...(something really advanced here, like case statements etc)... ";
 // -------------------------------------------------------
 // Build the criteria parameters for the object mapping 
 // -------------------------------------------------------
@@ -229,10 +229,10 @@ else {
 
  <p>
  Very sweet, no 'relations' to define, no hard coded object definitions etc, it will handle the
- building of the right/left/outer join requirments without you worrying about SQL syntax. yes sir!
+ building of the right/left/outer join requirements without you worrying about SQL syntax. yes sir!
  In the above example, a user defined select clause was passed, instead of the 1:1 column mapping 
  done automatically for you. Table name alias are permitted to be added also (i.e. 'users u' where u is the alias).
- You can ensure that nothing is accidently updated by use of the <code>readOnly</code> parameter
+ You can ensure that nothing is accidentally updated by use of the <code>readOnly</code> parameter
  enforces that the object, if modified is only a read only copy.
  
 </p>
@@ -275,8 +275,8 @@ $ArrayOfRecords = $stuff->getData();
 
 <p>
 	You have ultimate control, with the luxury of secure bind variables, nice!
-	Here we demonstrate that you can set a Prefetch amount by the parameter <code>rows</code>
-	for each iteration, the default is one. Save iteration time by prepopulating your buffer.
+	Here we demonstrate that you can set a Pre-fetch amount by the parameter <code>rows</code>
+	for each iteration, the default is one. Save iteration time by pre-populating your buffer.
 </p>
 
 <h2>Multiple Statement Processing</h2>
@@ -297,8 +297,8 @@ $finalQuery = "SELECT * from #finalData";
 
 // Assign all the QUERY requests here
 $queryParams[query] = array( // Raw queries do not return any data, but are DML or DCL statments
-	array(raw => $rawQuery1), // passthrough query 1 - creates temp table HawbIds
-	array(raw => $rawQuery2), // passthrough query 2 - narrow down the results
+	array(raw => $rawQuery1), // pass-through query 1 - creates temp table ids
+	array(raw => $rawQuery2), // pass-through query 2 - narrow down the results
 	array(raw => $query), // set the final data set as a temp table with the correct sorting, and ensure order query with sort order next
 	array(query => $finalQuery) // Actual query to fetch data
   );
@@ -314,11 +314,11 @@ foreach ($myData as $i => $row){
 </code></pre>
 
 <p>
-	That is the power and flexlibility of the syDB ORM, but yet there is much more.
+	That is the power and flexibility of the syDB ORM, but yet there is much more.
 	You may execute any number of <code>raw</code> queries prior to the <code>query</code>
-	parameter, the only reststriction is that they will not return any records, only
-	one query is permitted to fetch, and that is the <code>query</code> pararmeter.
-	Unlike other ORM's this one doesn't restict you purely to direct mapping to 
+	parameter, the only restriction is that they will not return any records, only
+	one query is permitted to fetch, and that is the <code>query</code> parameter.
+	Unlike other ORM's this one doesn't restrict you purely to direct mapping to 
 	database objects but also is flexible to serve as a transient database API.
 </p>
 
@@ -330,7 +330,7 @@ foreach ($myData as $i => $row){
 	some business logic, operation qualifiers can be assigned to the object to carry back
 	messages or information with altering or affect the database cloned record.
 	You would reference the objects member variable like normal but prefix it with
-	"xmeta", and the ORM will assign it as meta-data for messaging. Sweet!
+	<code>xmeta</code>, and the ORM will assign it as meta-data for messaging. Sweet!
 	Let's show an example here:
 </p>
 
@@ -354,7 +354,7 @@ class ShowSomeClass extends SomethingWonderful {
 ... returning back to the main body ...
 
 if ($user->xmetaStatus!='Roses'){
-	throw Exception('this guy stinks');
+	throw new Exception('this guy stinks');
 }
 else {
 	// You can pass some additional information that can be used for
@@ -444,7 +444,7 @@ else {
 	If you were to omit the <code>hasResult()</code> function simply assign data and <code>Save()</code>,
 	the ORM will create a new row if the record does not exist or update the row if it does. The 
 	<code>hasResult()</code> method is shown simply to demonstrate that you have a means of 
-	validating the state prior to any modificaitons or for more granular proces flow assignment.
+	validating the state prior to any modifications or for more granular process flow assignment.
 </p>
 
 
@@ -452,7 +452,7 @@ else {
 <p>
 	You have the all the functionality of a read operation in qualifying the record to delete. 
 	As mentioned the ORM will update or delete based upon the primary key assignment of the 
-	table for the most optimal performace. Deleting is as simple of complex as you would have it be. 
+	table for the most optimal performance. Deleting is as simple of complex as you would have it be. 
 </p>
 
 
@@ -480,11 +480,11 @@ $rowsAffected = syDB::Delete(array(
 
 <h2>Pagination</h2>
 <p>
-	The syDB ORM communicates with the helper class Paginator, and assigns all the database related
+	The syDB ORM communicates with the helper class <code>Paginator</code>, and assigns all the database related
 	pagination data. This allow you the freedom of not having to be concerned about page movement
 	and pagination selection.
-	Those of you who have been using these old versions of sybase know what a pain it is to work
-	in a moder way with pagination for the web. Well, we got your back covered with this one. All you
+	Those of you who have been using these old versions of Sybase know what a pain it is to work
+	in a modern way with pagination for the web. Well, we got your back covered with this one. All you
 	need to do to create the pagination bar is one line of code: 
 </p>
 
@@ -506,8 +506,8 @@ $rowsAffected = syDB::Delete(array(
 	When you set the <code>pagination</code> parameter, do not user the <code>rows</code> parameter
 	they are mutually exclusive. You control the number of displayed row by setting the 
 	<code>Pager_RowsPerPage</code> parameter described below. The ORM works synergistically 
-	with the Paginator Class so that you do not have to keep track of where you are in the 
-	page selections. The Paginator class uses a caching mechanism to keep the status persistent. 
+	with the <code>Paginator</code> Class so that you do not have to keep track of where you are in the 
+	page selections. The <code>Paginator</code> Class uses a caching mechanism to keep the status persistent. 
 </p>
 
 <p>
@@ -573,7 +573,7 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 </code></pre>
 
 <p>
-	Note the use of the paramter <code>object</code> singular vs. the <code>objects</code> plural. 
+	Note the use of the parameter <code>object</code> singular vs. the <code>objects</code> plural. 
 	This distinction tells the ORM that you are fetching more than one object in the internal buffer.
 	When more than one object is merged into the internal buffer, the object implicitly becomes
 	"read only", and CRUD operations are not allowed.
@@ -583,10 +583,4 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 <h3>More Documentation coming</h3>
 <p>
 	We have only began to scratch the surface of function documented here... more coming...
-</p>
-
-<pre><code>
-</code></pre>
-
-<p>
 </p>
