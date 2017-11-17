@@ -1,11 +1,3 @@
-<style>
-<!--
-.md-readme pre > code {
-	background-color: #000 !important;
-	color: green !important;
-}
--->
-</style>
 
 <div class="md-readme">
 
@@ -634,3 +626,11 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 
 
 </div>
+<style>
+<!--
+.md-readme code {
+	background-color: #000 !important;
+	color: green !important;
+}
+-->
+</style>
