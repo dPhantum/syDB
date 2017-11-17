@@ -19,8 +19,8 @@ Let's not waste anytime, let's just see what it can do on top of those old clunk
 
 
 <blockquote>
-Good advice is sometimes confusing, but example is always clear.
-<p>Guy Doud [Teacher of the Year]</>
+Good advice is sometimes confusing, but example is always clear.<br>
+Guy Doud [Teacher of the Year]
 </blockquote>
 <br>
 
