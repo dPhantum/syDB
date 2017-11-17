@@ -131,7 +131,7 @@ if (!(new syDB(array(
 }
 </code></pre>
 <p>
-The <code>hasResult()</code> will return a boolean true if data was found or false if its empty. 
+	The <code>hasResult()</code> will return a boolean true if data was found or false if its empty. 
 </p>
 
 
@@ -139,23 +139,42 @@ The <code>hasResult()</code> will return a boolean true if data was found or fal
 
 <h2>While Loop Example</h2>
 <p>
-Sometimes you want to fetch all records till the end, for application meta-data for example with
-short lists. syDB can be used and an iterator to accomplish this.
+	Sometimes you want to fetch all records till the end, for application meta-data for example with
+	short lists. syDB can be used and an iterator to accomplish this.
 </p>
 
 <pre><code>
 
 $Fruits = new ORM(array(
-object => 'trees',
-where => array(
-	'tree_type'=>'fruit bearing')
+	object => 'trees',
+	where => array(
+		'tree_type'=>'fruit bearing')
 ));
 
-while ($RemarkType->Fetch()) {
-	$Fruit[] = $RemarkType->FruitName;
+while ($Fruits->Fetch()) {
+	$Fruit[] = $Fruits->FruitName;
 }
+
+// If you are getting a finite set of rows and know the value
+// You don't need to iterate to gather the array
+// You accomplish the same ends by the following
+$Fruits = new ORM(array(
+	object => 'trees',
+	where => array(
+		'tree_type'=>'fruit bearing'),
+	rows => 100  // Tell the ORM how many rows you want
+));
+// Now simply as for them in an array
+$Fruits = $Fruits->getData(); // No iteration needed! sweet!
+
 </code>
 </pre>
+<p>
+	When you specificy the <code>rows</code> parameter you don't need to iterate
+	the data will be pre-fetched into and internal buffer and given by the 
+	<code>getData()</code> function. Making your code very conscise, and
+	avoid additional iterations.
+</p>
 
 <h2>Foreach Loop Example</h2>
 <pre><code>
@@ -589,5 +608,3 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 
 <p>
 </p>
-
-
