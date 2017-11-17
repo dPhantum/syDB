@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body style="margin-left: 50px" class="block-center">
-	<div class="alert alert-danger" role="alert">Documentation is currently in progress</div>
+<div class="alert alert-danger" role="alert">Documentation is currently is being written</div>
 
 <h1>syDB ORM for Sybase SQLAnywhere version 12 and below</h1>
 
@@ -317,18 +317,60 @@ foreach ($hawbs as $i => $row){
 	That is the power and flexlibility of the syDB ORM, but yet there is much more.
 </p>
 
+<h2>Messaging or Metadata Assignment</h2>
+<p>
+	Unique to this ORM is the ability to assign meta-data or messages to the ORM object
+	directly which does not affect the cloned copy of the database records.
+	Hence, when passing the object by reference to other member function that perform
+	some business logic, operation qualifiers can be assigned to the object to carry back
+	messages or information with altering or affect the database cloned record.
+	You would reference the objects member variable like normal but prefix it with
+	"xmeta", and the ORM will assign it as meta-data for messaging. Sweet!
+	Let's show an example here:
+</p>
 
+<pre>
+<code>
+	$user = new syDB(array(object => 'users'));
+	ShowSomeClass::processIt($user); // by reference parameter
+	
+	.... meanwhile back at the ShowSomeClass class
+	static public function ShowSomeClass(&$user){
+		if (checkifsomethingstinks($user))
+			$user->xmetaStatus = 'foul breath';
+		else
+			$user->xmetaStatus = 'Roses';
+			
+		return;
+	}
+	... returning back to the main body ...
+	
+	if ($user->xmetaStatus!='Roses'){
+		throw Exception('this guy stinks');
+	}
+	else {
+		// You can pass some additional information that can be used for
+		// further processing but not actually tied to the user record.
+		$user->xmetaMessage ="Display this about the user, 'he smells like roses'";
+		Security::createUser($user); // pass by reference to create the user
+	}
+	
+</code></pre>
 
-
+<p>
+	You can see that this type of messaging is great when and object is passed by reference
+	across many different functions for applying some business logic. I will not affect
+	the actual objects cloned data in any way.
+</p>
 
 
 <h2>CRUD Operations</h2>
 <p>
-Well, we already seen a taste of the read operations. Now let's do data editing and creation
+Well, we already have seen a taste of the read operations. Now let's do data editing and creation
 </p>
 
-<h3>Createion/Inserts</h3>
-<p>And that is it.
+<h3>Creation/Inserts</h3>
+<p>Life made very simple for adding new record.</p>
 <pre><code>
 $user = new syDB(array(
 				'object' => 'users'
@@ -339,10 +381,51 @@ $user->email = "johanan@doey.com";
 ...
 $user->Save();
 
+// For all new records the Primary Key is auto-assigned to the object 
+// after insertion, all you need to do is reference it like so:
+$UserId = $user->id; 
+
 </code></pre>
 <p>
+The ORM will auto assign the auto-incremented or primary key, when the record is created.
+You will no longer have to make a subsequent call to get the key value, it is given to you on a stick! 
 </p>
 
+
+
+<h2>Update Operations</h2>
+<p>
+To update a record, you can fetch as normal and then after making your alterations simply 
+call the Save() function. 
+</p>
+
+<pre><code>
+
+$user = new syDB(array(
+		object => 'users'
+		conditions => array(
+			'id' => 123354
+		)
+	));
+
+if ($user->hasResult()){
+	// Do and update here
+	$user->last_udpated=date('Y-m-d H:i:s');
+	$user->Save();
+}
+else {
+	$user->create_date=date('Y-m-d H:i:s');
+	$user->name = "Fredrick Furball";
+	$user->Save();
+}	
+	
+</code></pre>
+
+<p>
+	Notice that the <code>Save()</code> function is used for both the insert and update, this is
+	because the ORM keeps track of its state, and will translate the appropriate database action
+	when Save is triggered.
+</p>
 
 
 <h3>More Documentation coming</h3>
