@@ -2,17 +2,20 @@
 
 <h1>syDB ORM for Sybase SQLAnywhere version 12 and below</h1>
 
-<p>For those poor weary souls who have to develop with the ancient version of SQLAnywhere version 12 and below, 
-there is hope for you! This code was developed out of the need that there were no modern ORM's out there that supported 
-that old dinosaur version of SQLAnywhere, and to overcome the serious technical flaws that the database version 
-did not support, namely, scrolling cursors. That version of the database does support the <code>LIMIT</code> clause as modern databases due today. But be of good cheer syDB is here!</p>
+<p>
+	For those poor weary souls who have to develop with the ancient version of SQLAnywhere version 12 and below, 
+	there is hope for you! This code was developed out of the need that there were no modern ORM's out there that supported 
+	that old dinosaur version of SQLAnywhere, and to overcome the serious technical flaws that the database version 
+	did not support, namely, scrolling cursors. That version of the database does support the <code>LIMIT</code> clause as modern databases due today. But be of good cheer syDB is here!
+</p>
 
 <h2>Modern Things in and Old Thing</h2>
-<p>So, to relieve the pain of having to use version 12 and below of Sybase in PHP, syDB was born.
+<p>
+	So, to relieve the pain of having to use version 12 and below of Sybase in PHP, syDB was born.
 </p>
 
 <p>
-Let's not waste anytime, let's just see what it can do on top of those old clunky versions of Sybase.
+	Let's not waste anytime, let's just see what it can do on top of those old clunky versions of Sybase.
 </p><br>
 
 
@@ -39,8 +42,10 @@ Good advice is sometimes confusing, but example is always clear.<br>
 </p>
 
 <h2>Simplest Usage</h2>
-<p>Here is the simplest usage that you could possible have with syDB ORM, although not recommended,
-because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:</p>
+<p>
+	Here is the simplest usage that you could possible have with syDB ORM, although not recommended,
+	because it does not take advantage of implicit bind variables to prevent sql injection, bet here it is:
+</p>
 
 
 <pre><code>
@@ -49,10 +54,9 @@ $dog = new syDB(array(
 		query => "SELECT * FROM CANINES WHERE kind='dog' AND breed='chihuahua'"
 	));
 	
-echo "The breed ".
-	$dog->name." weighs ".
-	$dog->weight." pnds standing ".
-	$dog->height." inches.";	
+echo "The breed ".$dog->breed
+	." weighs ".$dog->weight." pnds "
+	." standing ".$dog->height." inches, and is actually a rat and not a dog.";	
 	
 </code></pre>
 <p>
@@ -582,3 +586,8 @@ conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
 <p>
 	We have only began to scratch the surface of function documented here... more coming...
 </p>
+
+<p>
+</p>
+
+
