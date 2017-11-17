@@ -141,7 +141,7 @@ Sometimes you want to fetch all records till the end, for application meta-data 
 short lists. syDB can be used and an iterator to accomplish this.
 </p>
 
-<code><pre>
+<pre><code>
 
 $Fruits = new ORM(array(
 object => 'trees',
@@ -152,12 +152,11 @@ where => array(
 while ($RemarkType->Fetch()) {
 	$Fruit[] = $RemarkType->FruitName;
 }
-
-</pre>
 </code>
+</pre>
 
 <h2>Foreach Loop Example</h2>
-<code><pre>
+<pre><code>
 $Fruits = new ORM(array(
 	object => 'trees',
 	where => array('tree_type'=>'fruit bearing')
@@ -166,9 +165,8 @@ $Fruits = new ORM(array(
 foreach ($Fruits as $indx => $fruit ) {
 	$Fruit[] = $fruit->fruit_name;
 }
-
-</pre>
 </code>
+</pre>
 
 <h2>Join Methods</h2>
 <p>
@@ -486,3 +484,4 @@ We have only began to scratch the surface of function documented here... more co
 
 <p>
 </p>
+
