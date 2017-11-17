@@ -1,3 +1,9 @@
+<style>
+.md-readme pre {
+	background-color: #000 !important;
+	color: green !important;
+}
+</style>
 
 <div class="md-readme">
 
@@ -167,7 +173,7 @@ $Fruits = new ORM(array(
 		'tree_type'=>'fruit bearing'),
 	rows => 100  // Tell the ORM how many rows you want
 ));
-// Now simply as for them in an array
+// Now simply ask for them in an array
 $Fruits = $Fruits->getData(); // No iteration needed! sweet!
 
 </code>
@@ -181,14 +187,17 @@ $Fruits = $Fruits->getData(); // No iteration needed! sweet!
 
 <h2>Foreach Loop Example</h2>
 <pre><code>
+
 $Fruits = new ORM(array(
 	object => 'trees',
 	where => array('tree_type'=>'fruit bearing')
 ));
 
+
 foreach ($Fruits as $indx => $fruit ) {
-	$Fruit[] = $fruit->fruit_name;
+		$Fruit[] = $fruit->fruit_name;
 }
+
 </code>
 </pre>
 
