@@ -565,7 +565,7 @@ CONST Pager_PagesPerBar = 6;	// Controls displayed page ranges in the paginator 
  </p>
  
 <p>
-	These phrases must be written as (in object notation)
+	These phrases must be written as:
 </p>
 
 <pre><code>
