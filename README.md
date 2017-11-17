@@ -374,10 +374,15 @@ else {
 
 <h2>CRUD Operations</h2>
 <p>
-Well, we already have seen a taste of the read operations. Now let's do data editing and creation
+Well, we already have seen a taste of the read operations. Now let's do data editing and creation.
+All the functionality for querying apply to the update and delete operations. These requests
+are internally optimized by the ORM to perform the update operations implicitly by the
+primary key, so you need only change the data definitions and let the ORM update by the key 
+for better performance. How nice is that! As a developer you can just focus on the business
+operation and the ORM take care of the database optimization.
 </p>
 
-<h3>Creation/Inserts</h3>
+<h3>Creation/Inserts Operations</h3>
 <p>Life made very simple for adding new record.</p>
 <pre><code>
 $user = new syDB(array(
@@ -394,6 +399,7 @@ $user->Save();
 $UserId = $user->id; 
 
 </code></pre>
+
 <p>
 The ORM will auto assign the auto-incremented or primary key, when the record is created.
 You will no longer have to make a subsequent call to get the key value, it is given to you on a stick! 
@@ -401,7 +407,7 @@ You will no longer have to make a subsequent call to get the key value, it is gi
 
 
 
-<h2>Update Operations</h2>
+<h3>Update Operations</h3>
 <p>
 To update a record, you can fetch as normal and then after making your alterations simply 
 call the Save() function. 
@@ -434,9 +440,45 @@ else {
 	because the ORM keeps track of its state, and will translate the appropriate database action
 	when Save is triggered.
 </p>
+<p>
+	If you were to omit the <code>hasResult()</code> function simply assign data and <code>Save()</code>,
+	the ORM will create a new row if the record does not exist or update the row if it does. The 
+	<code>hasResult()</code> method is shown simply to demonstrate that you have a means of 
+	validating the state prior to any modificaitons or for more granular proces flow assignment.
+</p>
 
 
-<h3>Pagination</h3>
+<h3>Delete Operations</h3>
+<p>
+	You have the all the functionality of a read operation in qualifying the record to delete. 
+	As mentioned the ORM will update or delete based upon the primary key assignment of the 
+	table for the most optimal performace. Deleting is as simple of complex as you would have it be. 
+</p>
+
+
+<pre><code>
+$user = new syDB(array(
+	object => 'users',
+	where => array(
+		'email' => 'superman@hereos.com'
+	)
+));
+
+$rowsAffected = $user->Delete(); // goodbye superman :|
+
+// OR could perform the same operation as follows without instantiating the class
+$rowsAffected = syDB::Delete(array(
+	object => 'users',
+	where => array(
+		'email' => 'superman@hereos.com'
+	)
+));
+
+</code></pre>
+
+
+
+<h2>Pagination</h2>
 <p>
 	The syDB ORM communicates with the helper class Paginator, and assigns all the database related
 	pagination data. This allow you the freedom of not having to be concerned about page movement
@@ -477,9 +519,70 @@ CONST Pager_PagesPerBar = 6;	// Controls displayed page ranges in the paginator 
 </code></pre>
 
 
+
+<h2>Joining Relations</h2>
+<h3>Column Join Equality</h3> 
+
+<p>
+	Column comparison must have the table qualifier for example if in a <code>NATURAL JOIN</code> condition.
+</p>
+
+
+<p>
+	The following <code>WHERE</code> conditions <code>WHERE ColumnA = ColumnB</code> where <code>ColumnA</code> is 
+	from <code>TableA</code> and <code>ColumnB</code> is from <code>TableB</code>
+ </p>
+ 
+<p>
+	These phrases must be written as (in object notation)
+</p>
+
+<pre><code>
+objects => array('TableA', 'TableB'),
+conditions => array( 'TableA.ColumnA' => 'TableB.ColumnB')
+</code></pre>
+
+<p>
+	And for comparisons other than <code>=</code> operator then specify the operator with the value/column
+</p>
+<pre><code>
+conditions => array( 'TableA.ColumnA' => array('>=' => 'TableB.ColumnB'))
+</code></pre>
+
+
+<p>
+	For <code>SELF JOINS</code> and simple column comparison, the same also applies.<br>
+	For example, in raw SQL the following <code>WHERE</code> condition: 
+<pre><code>
+WHERE Column1 = Column1
+</code></pre>
+
+<p>
+	Should be done as follows with the ORM:
+</p>
+<pre><code>
+conditions' => array('TableName.Column1' => 'TableName.Column2')
+</code></pre>
+
+<p>
+	And again in the case of special operators:
+</p>
+
+<pre><code>
+conditions => array('TableName.Column1' => array('!=' => 'TableName.Column2'))
+</code></pre>
+
+<p>
+	Note the use of the paramter <code>object</code> singular vs. the <code>objects</code> plural. 
+	This distinction tells the ORM that you are fetching more than one object in the internal buffer.
+	When more than one object is merged into the internal buffer, the object implicitly becomes
+	"read only", and CRUD operations are not allowed.
+</p>
+
+
 <h3>More Documentation coming</h3>
 <p>
-We have only began to scratch the surface of function documented here... more coming...
+	We have only began to scratch the surface of function documented here... more coming...
 </p>
 
 <pre><code>
@@ -487,4 +590,3 @@ We have only began to scratch the surface of function documented here... more co
 
 <p>
 </p>
-
