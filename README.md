@@ -98,7 +98,7 @@ $dog = new syDB(array(
 		object => "CANINES",
 		where => array(
 			'kind' => 'dog',
-			'breed => 'chihuahua'
+			'breed' => 'chihuahua'
 		)
 	));
 $var = $dog->breed;
