@@ -9,7 +9,7 @@
 	there is hope for you! This code was developed out of the need that there were no modern ORM's out there that supported 
 	that old dinosaur version of SQLAnywhere, and to overcome the serious technical flaws that the database version 
 	did not support, namely, scrolling cursors. That version of the database does support the
-	 <code>LIMIT</code> clause as modern databases due today. But be of good cheer syDB is here!	 
+	 <code>LIMIT</code> clause as modern databases do today. But be of good cheer syDB is here!	 
 </p>
 
 <h2>Modern Things in and Old Thing</h2>
