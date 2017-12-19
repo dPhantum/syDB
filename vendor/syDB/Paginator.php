@@ -17,17 +17,17 @@
  * BOOTSTRAP PAGER ELEMENTS
  * example html:
  * 
-		<ul class="pagination-sm">
-			<li><a href="#"><span class="glyphicon glyphicon-backward"></span></a></li>
-			<li><a href="#">1</a></li>
-			<li class="active"><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-forward"></span></a></li>
-			<li><a href="#"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
-		</ul>
-
+ *		<ul class="pagination-sm">
+ *			<li><a href="#"><span class="glyphicon glyphicon-backward"></span></a></li>
+ *			<li><a href="#">1</a></li>
+ *			<li class="active"><a href="#">2</a></li>
+ *			<li><a href="#">3</a></li>
+ *			<li><a href="#">4</a></li>
+ *			<li><a href="#">5</a></li>
+ *			<li><a href="#"><span class="glyphicon glyphicon-forward"></span></a></li>
+ *			<li><a href="#"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
+ *		</ul>
+ *
  */
 class Paginator {
 	
@@ -242,12 +242,9 @@ class Paginator {
 		if ($_SESSION["Pager"]["showFFIcon"])
 			$pager .='<li><a href="'.$_SESSION["Pager"]["link"].'pg='.$_SESSION["Pager"]["totalPages"].'&Index='.($_SESSION["Pager"]["totalPages"]*self::getRowsPerPage()).'&Range='.self::getRowsPerPage().'"><span class="glyphicon glyphicon-fast-forward"></span></a></li>';
 			
-	
-				
 		$pager .="</ul>
 	</div>";
-		
-		
+				
 		return $pager;
 	}
 
@@ -259,11 +256,12 @@ class Paginator {
 		return $_SESSION["Pager"]["classSize"];
 	}
 	/**
-	 * Moved to Reporting::ReportInfo()
+	 * Get the specific report details
+	 */
 	static public function getReportInfo(){
 		$details = self::_getReportDetail();
 		return $details;
-	}*/
+	}
 	
 	static public function getReportName(){
 		$details = self::_getReportDetail();
@@ -375,12 +373,13 @@ class Paginator {
 		// if this is indeterminate the total count may change during forward movement
 		// ----------------------------------------------------------------------------
 		if (self::isIndeterminate()) {
-			/*
-				if (intval($setSize) < self::IndeterminateMinFetch) {
+			/* @TODO: If using indeterminate this may need to be active again
+			if (intval($setSize) < self::IndeterminateMinFetch) {
 			$params['TotalRows'] = (int)self::IndeterminateMinFetch;
 			$setSize = (int)self::IndeterminateMinFetch;
 			}
-			else */
+			else 
+			*/
 			$params['TotalRows'] = $setSize;
 				
 			self::_computeValues($params);
